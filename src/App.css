@@ -1,0 +1,104 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Editor */
+
+.BlogEditor {
+  border: 1px solid grey;
+  text-align: center;
+  padding: 20px;
+}
+
+.BlogEditor input, textarea {
+  margin-bottom: 20px;
+  width: 500px;
+  padding: 10px;
+}
+
+.BlogEditor textarea {
+  height: 150px;
+}
+
+.BlogEditor select {
+  width: 300px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.BlogEditor button {
+  width: 500px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* List */
+
+.BlogList {
+  border: 1px solid gray;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.BlogList h2 {
+  text-align: center;
+}
+
+/* Item */
+
+.BlogItem {
+  background-color: rgb(240, 240, 240);
+  margin-bottom: 10px;
+  padding: 20px;
+}
+
+.BlogItem .info {
+  border-bottom: 1px solid gray;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.BlogItem .date {
+  color: gray;
+}
+
+.BlogItem .content {
+  font-weight: bold;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
