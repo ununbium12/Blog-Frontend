@@ -1,7 +1,11 @@
-import React, {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import Axios from 'axios';
 
-const BlogEditor =({onCreate}) => {
+const BlogEditor = ({ onCreate }) => {
+
+  useEffect(() => {
+    console.log("BlogEditor 렌더");
+  });
 
   const authorInput = useRef();
   const contentInput = useRef();
@@ -51,7 +55,7 @@ const BlogEditor =({onCreate}) => {
   //const [content, setContent] = useState("");
   // author: input에 들어가는 내용관리, setAuthor: Author의 상태변화
 
-  Axios.get('./api/users').then(data => console.log(data));
+  Axios.get('./api/boards').then(data => console.log(data));
 
   return(
     <div className="BlogEditor">
@@ -102,4 +106,4 @@ const BlogEditor =({onCreate}) => {
   );
 };
 
-export default BlogEditor;
+export default React.memo(BlogEditor);

@@ -1,11 +1,11 @@
 import Axios from 'axios';
 import BlogItem from './BlogItem';
 
-const BlogList = ({ blogList }) => {
+const BlogList = ({ onEidt, onRemove, blogList }) => {
 
  // console.log(blogList); // App.js에게 값을 잘 받았는지 확인용
 
-  Axios.get('./api/users').then(data => console.log(data));
+  Axios.get('./api/boards').then(data => console.log(data));
 
   return (
     <div className="BlogLsit">
@@ -13,7 +13,7 @@ const BlogList = ({ blogList }) => {
       <h4>{blogList.length}개의 일기가 있습니다.</h4>
       <div>
         {blogList.map((it) => (
-          <BlogItem key={it.id} {...it}/> // BlogItem이 아래의 작성을 처리해준다.
+          <BlogItem key={it.id} {...it} onRemove={onRemove} onEidt={onEidt} /> // BlogItem이 아래의 작성을 처리해준다.
         // 고유한 아이디를 가지고 있지 않을 경우 => key={idx}
         //  <div key={it.id}>
         //    <div>작성자 : {it.author}</div>
