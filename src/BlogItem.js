@@ -1,9 +1,10 @@
 import Axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, /* useEffect, */ useRef, useState } from 'react';
+import { BlogDispatchContext } from './App';
 
 const BlogItem = ({
-  onEidt, 
-  onRemove, 
+  // onEdit, 
+  // onRemove, 
   author, 
   content, 
   created_date, 
@@ -11,9 +12,11 @@ const BlogItem = ({
   id 
 }) => {
 
-  useEffect(() => {
-    console.log(`${id}번 째 아이템 렌더!`);
-  });
+  // useEffect(() => {
+  //   console.log(`${id}번 째 아이템 렌더!`);
+  // });
+
+  const {onRemove, onEdit} = useContext(BlogDispatchContext);
 
   Axios.get('./api/boards').then(data => console.log(data));
 
@@ -42,7 +45,7 @@ const BlogItem = ({
     }
 
     if(window.confirm(`${id}번째 일기를 수정하시겠습니까?`)) {
-      onEidt(id, localContent);
+      onEdit(id, localContent);
       toggleIsEdit();
     }
   };

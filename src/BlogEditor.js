@@ -1,11 +1,14 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useContext, /*useEffect,*/ useRef, useState} from "react";
 import Axios from 'axios';
+import { BlogDispatchContext } from "./App";
 
-const BlogEditor = ({ onCreate }) => {
+const BlogEditor = (/*{ onCreate }*/) => {
 
-  useEffect(() => {
-    console.log("BlogEditor 렌더");
-  });
+  const {onCreate} = useContext(BlogDispatchContext);
+
+  // useEffect(() => {
+  //   console.log("BlogEditor 렌더");
+  // });
 
   const authorInput = useRef();
   const contentInput = useRef();
