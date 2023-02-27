@@ -1,15 +1,10 @@
-import React, {useContext, /*useEffect,*/ useRef, useState} from "react";
+import React, {useContext, useRef, useState} from "react";
 import Axios from 'axios';
 import { BlogDispatchContext } from "./App";
 
-const BlogEditor = (/*{ onCreate }*/) => {
+const BlogEditor = () => {
 
   const {onCreate} = useContext(BlogDispatchContext);
-
-  // useEffect(() => {
-  //   console.log("BlogEditor 렌더");
-  // });
-
   const authorInput = useRef();
   const contentInput = useRef();
 
@@ -31,21 +26,18 @@ const BlogEditor = (/*{ onCreate }*/) => {
 
   const handleSubmit = (e) => {
     if(state.author.length < 1) {
-      // alert("작성자는 최소 1글자 이상 입력해주십시오."); // 최근 트렌드는 alert을 안쓰는 추세
       // focus
       authorInput.current.focus();
       return;
     }
 
     if(state.content.length < 5) {
-      // alert("일기 본문은 최소 5글자 이상 입력해주십시오.");
       // focus
       contentInput.current.focus();
       return;
     }
 
     onCreate(state.author, state.content, state.emotion);
-    //console.log(state);
     alert("저장 성공");
     setState({
       author: "",
@@ -54,28 +46,17 @@ const BlogEditor = (/*{ onCreate }*/) => {
     });
   };
 
-  //const [author, setAuthor] = useState("");
-  //const [content, setContent] = useState("");
-  // author: input에 들어가는 내용관리, setAuthor: Author의 상태변화
-
   Axios.get('./api/boards').then(data => console.log(data));
 
   return(
     <div className="BlogEditor">
-      <h2>오늘의 일기</h2>
+      <h2>오늘의 블로그</h2>
       <div>
         <input
           ref={authorInput}
           name="author"
           value={state.author}
           onChange={handleChangState}
-          // onChange={(e) => {
-          //   setState({
-          //     ...state, // 아래의 state 대신 활용해준다. 또한 아래쪽에 들어가면 원래 값이 들어가서 업데이트가 안된다.
-          //     author: e.target.value,
-          //     //content: state.content,
-          //   });
-          // }}
         />
       </div>
       <div>
@@ -84,13 +65,6 @@ const BlogEditor = (/*{ onCreate }*/) => {
           name="content"
           value={state.content}
           onChange={handleChangState}
-          // onChange={(e) => {
-          //   setState({
-          //     ...state,
-          //     content: e.target.value,
-          //     //author: state.author,
-          //   });
-          // }}
         />
       </div>
       <div>
@@ -103,7 +77,7 @@ const BlogEditor = (/*{ onCreate }*/) => {
         </select>
       </div>
       <div>
-        <button onClick={handleSubmit}>일기 저장하기</button>
+        <button onClick={handleSubmit}>개시글 저장하기</button>
       </div>
     </div>
   );
