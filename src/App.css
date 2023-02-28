@@ -1,104 +1,386 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Yeon+Sung&display=swap');
+
+body {
+  background-color: #c0defe;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Nanum pen Script";
+  min-height: 100vh;
+  margin: 0px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@media (min-width: 650px) {
+  .App{
+    width: 640px;
   }
 }
 
-.App-header {
-  background-color: #282c34;
+@media (max-width: 650px) {
+  .App{
+    width: 90vw;
+  }
+}
+
+#root {
+  background-color: #f7fbff;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.App {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* MyButton */
+
+.MyButton {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  font-size: 18px;
+
+  white-space: nowrap;
+  font-family: "Nanum pen Script";
+}
+
+.MyButton_default {
+  background-color: #ececec;
+  color: black;
+}
+
+.MyButton_positive {
+  background-color: #64c964;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.MyButton_negative {
+  background-color: #fd565f;
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* HEADER */
+
+header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e2e2e2;
 }
 
-/* Editor */
-
-.BlogEditor {
-  border: 1px solid grey;
-  text-align: center;
-  padding: 20px;
+header > div {
+  display: flex;
 }
 
-.BlogEditor input, textarea {
-  margin-bottom: 20px;
-  width: 500px;
-  padding: 10px;
+header .head_text {
+  width: 50%;
+  font-size: 25px;
+  justify-content: center;
 }
 
-.BlogEditor textarea {
-  height: 150px;
+header .head_btn_left {
+  width: 25%;
+  justify-content: start;
 }
 
-.BlogEditor select {
-  width: 300px;
-  padding: 10px;
-  margin-bottom: 20px;
+header .head_btn_right {
+  width: 25%;
+  justify-content: end;
 }
 
-.BlogEditor button {
-  width: 500px;
-  padding: 10px;
+header button {
+  font-family: "Nanum pen Script";
+}
+
+/* BlogList */
+
+.BlogList .menu_wrapper {
+  margin-top: 20px;
+  margin-bottom: 30px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.BlogList .menu_wrapper .right_col {
+  flex-grow: 1;
+}
+
+.BlogList .menu_wrapper .right_col button {
+  width: 100%;
+}
+
+.BlogList .ControlMenu {
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ececec;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  cursor: pointer;
+  font-family: "Nanum Pen Script";
+  font-size: 18px;
+}
+
+/* BlogItem */
+
+.BlogItem {
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+  border-bottom: 1px solid #e2e2e2;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.BlogItem .emotion_img_wrapper {
+  cursor: pointer;
+  min-width: 120px;
+  height: 80px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.BlogItem .emotion_img_wrapper_1 {
+  background-color: #64c964;
+}
+.BlogItem .emotion_img_wrapper_2 {
+  background-color: #9bb772;
+}
+.BlogItem .emotion_img_wrapper_3 {
+  background-color: #fdce17;
+}
+.BlogItem .emotion_img_wrapper_4 {
+  background-color: #fd8446;
+}
+.BlogItem .emotion_img_wrapper_5 {
+  background-color: #fd565f;
+}
+
+.BlogItem .emotion_img_wrapper img {
+  width: 50%;
+}
+
+.BlogItem .info_wrapper {
+  flex-grow: 1;
+  margin-left: 20px;
   cursor: pointer;
 }
 
-/* List */
-
-.BlogList {
-  border: 1px solid gray;
-  padding: 20px;
-  margin-top: 20px;
+.BlogItem .blog_date {
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 5px;
 }
 
-.BlogList h2 {
+.BlogItem .blog_content_preview {
+  font-size: 18px;
+}
+
+.BlogItem .btn_wrapper {
+  min-width: 70px;
+}
+
+/* BlogEditor */
+
+.BlogEditor {
+
+}
+
+.BlogEditor section {
+  margin-bottom: 40px;
+}
+
+.BlogEditor h4 {
+  font-size: 27px;
+  font-weight: bold;
+}
+
+.BlogEditor .input_date {
+  border: none;
+  border-radius: 5px;
+  background-color: #ececec;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  cursor: pointer;
+  font-family: "Nanum Pen Script";
+  font-size: 20px;
+}
+
+.BlogEditor .emotion_list_wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  gap: 2%;
+}
+
+.BlogEditor textarea {
+  font-family: "Nanum Pen Script";
+  font-size: 20px;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 200px;
+  resize: vertical;
+
+  border: none;
+  border-radius: 5px;
+  background-color: #ececec;
+
+  padding: 20px;
+}
+
+.BlogEditor .control_box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* EmotionItem */
+
+.EmotionItem {
+  cursor: pointer;
+
+  border-radius: 5px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.EmotionItem img {
+  width: 50%;
+  margin-bottom:  10px;
+}
+
+.EmotionItem span {
+  font-size: 18px;
+}
+
+.EmotionItem_off {
+  background-color: #ececec;
+}
+
+.EmotionItem_on_1 {
+  background-color: #64c964;
+  color: white;
+}
+
+.EmotionItem_on_2 {
+  background-color: #9bb772;
+  color: white;
+}
+
+.EmotionItem_on_3 {
+  background-color: #fdce17;
+  color: white;
+}
+
+.EmotionItem_on_4 {
+  background-color: #fd8446;
+  color: white;
+}
+
+.EmotionItem_on_5 {
+  background-color: #fd565f;
+  color: white;
+}
+
+/* Blog */
+
+.BlogPage {
+}
+
+.BlogPage section {
+  width: 100%;
+  margin-bottom: 100px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 }
 
-/* Item */
-
-.BlogItem {
-  background-color: rgb(240, 240, 240);
-  margin-bottom: 10px;
-  padding: 20px;
-}
-
-.BlogItem .info {
-  border-bottom: 1px solid gray;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-}
-
-.BlogItem .date {
-  color: gray;
-}
-
-.BlogItem .content {
+.BlogPage h4 {
+  font-size: 22px;
   font-weight: bold;
-  margin-bottom: 30px;
-  margin-top: 30px;
+}
+
+.BlogPage img {
+  width: 100px;
+  height: 150px;
+}
+
+.BlogPage .blog_img_wrapper {
+  background-color: #ececec;
+  width: 250px;
+  height: 250px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.BlogPage .blog_img_wrapper_1 {
+  background-color: #64c964;
+}
+
+.BlogPage .blog_img_wrapper_2 {
+  background-color: #9bb772;
+}
+
+.BlogPage .blog_img_wrapper_3 {
+  background-color: #fdce17;
+}
+
+.BlogPage .blog_img_wrapper_4 {
+  background-color: #fd8446;
+}
+
+.BlogPage .blog_img_wrapper_5 {
+  background-color: #fd565f;
+}
+
+.BlogPage .emotion_descript {
+  font-size: 25px;
+  color: white;
+}
+
+.BlogPage .blog_content_wrapper {
+  width: 100%;
+  background-color: #ececec;
+  border-radius: 5px;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.BlogPage .blog_content_wrapper p {
+  padding: 20px;
+  text-align: left;
+  font-size: 20px;
+  font-family: "Yeon Sung";
+  font-weight: 400;
+  line-height: 2.5;
 }

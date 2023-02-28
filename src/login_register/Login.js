@@ -1,4 +1,4 @@
-import "./App.css";
+import "../App.css";
 import Axios from 'axios';
 import React, { useState } from 'react'  
 
@@ -41,6 +41,7 @@ export default function App() {
             alert("로그인 실패했습니다.");
           }else{
             alert("로그인 성공했다 머머리야");
+            window.location.href ="/"
             // window.localStorage.setItem("");
           }
       }).catch((err) =>{
@@ -50,8 +51,10 @@ export default function App() {
 	};
 
   function letRegister() {
-    window.location.href ="./RegisterPage.js"
+    window.location.href ="/register"
   };
+
+  Axios.defaults.withCredentials = true; //axios
 
   return (
     <div className="userLoginBox" >

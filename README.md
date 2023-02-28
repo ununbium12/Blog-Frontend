@@ -72,3 +72,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ===================================
 
+### 2023.02.28 / 버전업
+전에 있던 화면 구성을 갈아업고서, 각각의 화면구성 파일들을 폴더로 나누어 저장함
+
+1. login_register = 로그인/회원가입 페이지
+2. components = 화면을 구성시 들어가는 소규모 파일 폴더
+3. pages = 기본 화면 구성 페이지 [홈 화면(home), 게시판 생성 및 수정 화면(New, Edit), 게시판 확인 화면(Blog)]
+4. util = 화면 구성시 여러 곳에 필요한 데이터를 모아둔 폴더
+5. assets = 이미지 파일 저장 폴더
+
+그외의 삭제된 폴더는 필요 없다고 판단되어 삭제
