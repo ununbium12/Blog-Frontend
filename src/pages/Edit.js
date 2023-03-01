@@ -8,6 +8,12 @@ const Edit = () => {
 
   Axios.defaults.withCredentials = true; //axios
 
+  let userId = localStorage.getItem('userId');
+  if(userId == ""){
+    window.location.href ="/login";
+  }
+  console.log(userId)
+
   const [originData, setOriginData] = useState();
   const navigate = useNavigate();
   const { id } = useParams();

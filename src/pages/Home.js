@@ -10,6 +10,12 @@ const Home = () => {
 
   Axios.defaults.withCredentials = true; //axios
 
+  let userId = localStorage.getItem('userId');
+  if(userId == ""){
+    window.location.href ="/login";
+  }
+  console.log(userId)
+
   const blogList = useContext(BlogStateContext);
 
   const [data, setData] = useState([]);

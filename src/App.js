@@ -11,6 +11,7 @@ import Login from './login_register/Login';
 import Register from './login_register/Register';
 
 import RouteTest from './components/RouteTest';
+import Logout from './login_register/Logout';
 
 Axios.defaults.withCredentials = true; //axios
 
@@ -123,6 +124,7 @@ function App() {
               <Route path='/blog/:id' element={<Blog />} />
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
+              <Route path='/logout' element={<Logout />} />
             </Routes>
             <br/>
             <RouteTest/>

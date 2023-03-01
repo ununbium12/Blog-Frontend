@@ -11,6 +11,12 @@ const Bolg = () => {
 
   Axios.defaults.withCredentials = true; //axios
 
+  let userId = localStorage.getItem('userId');
+  if(userId == ""){
+    window.location.href ="/login";
+  }
+  console.log(userId)
+
   const { id } = useParams();
   const blogList = useContext(BlogStateContext);
   const navigate = useNavigate();
@@ -32,6 +38,7 @@ const Bolg = () => {
       }
     }
   }, [id, blogList]);
+  
 
   if(!data) {
     return <div className="BlogPage">로딩중입니다...</div>;

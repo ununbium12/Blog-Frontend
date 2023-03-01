@@ -4,6 +4,9 @@ import Axios from 'axios';
 
 export default function App() {
   let userId = document.querySelector('#userId');
+  if(userId == null){
+    window.location.href ="/login";
+  }
 	let passwordForm = document.querySelector('#password');
 	let re_passwordForm = document.querySelector('#re_password');
 	
