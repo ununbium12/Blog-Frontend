@@ -11,6 +11,8 @@ const Home = () => {
   Axios.defaults.withCredentials = true; //axios
 
   let userId = localStorage.getItem('userId');
+  let idx = localStorage.getItem('idx');
+
   if(userId == ""){
     window.location.href ="/login";
   }
@@ -21,7 +23,32 @@ const Home = () => {
   const [data, setData] = useState([]);
   const [curDate, setCurDate] = useState(new Date());
   const headText = `${curDate.getFullYear()}년 ${curDate.getMonth() + 1}월`;
+  const [listData, setListData] = useState([]);
   
+  useEffect(() => {
+    const config = {
+      headers:{
+        "Content-Type": "application/json",
+      },
+    };
+    Axios.get("./api/boards/list", config)
+      .then(res => {
+        console.log(res.data);
+        setListData(res.data.content.map((it) => {
+          return {
+            idx : it.idx,
+            userId : it.userId,
+            title : it.title,
+            content : it.content,
+            writeDate : it.writeDate,
+          };
+        }).slice(0, 20));
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },[]);
+
   useEffect(()=>{
     if(blogList.length >= 1) {
       const firstDay = new Date(
@@ -42,11 +69,11 @@ const Home = () => {
     } else {
       setData([]);
     }
-  }, [blogList, curDate]);
+  }, [curDate]);
 
   useEffect(() => {
     console.log(data);
-  }, [data]);
+  }, []);
 
   const increaseMonth = () => {
     setCurDate(new Date(curDate.getFullYear(), curDate.getMonth()+1, curDate.getDate())
@@ -65,7 +92,7 @@ const Home = () => {
         leftChild={<MyButton text={"<"} onClick={decreaseMonth} />}
         rightChild={<MyButton text={">"} onClick={increaseMonth} />}
       />
-      <BlogList blogList={data} />
+      <BlogList blogList={listData} />
     </div>
   );
 };

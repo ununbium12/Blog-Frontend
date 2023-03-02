@@ -1,18 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import BlogItem from "./BlogItem";
 import MyButton from "./MyButton";
+import Axios from 'axios';
 
 const sortOptionList = [
-  {value : "lastest", name : "최신 순"},
+  {value : "latest", name : "최신 순"},
   {value : "oldest", name : "오래된 순"},
 ]
-
-const filterOptionList = [
-  { value : "all", name : "전부 다" },
-  { value : "good", name : "좋은 감정만" },
-  { value : "bad", name : "안좋은 감정만" },
-];
 
 const ControlMenu = React.memo(({ value, onChange, optionList }) => {
   return (
@@ -34,6 +29,7 @@ const BlogList = ({ blogList }) => {
   const navigate = useNavigate();
   const [sortType, setSortType] = useState('latest');
   const [filter, setFilter] = useState("all");
+
 
   const getProcessedBlogList = () => {
 
@@ -70,11 +66,6 @@ const BlogList = ({ blogList }) => {
             onChange={setSortType}
             optionList={sortOptionList}
           />
-          <ControlMenu
-            value={filter}
-            onChange={setFilter}
-            optionList={filterOptionList}
-          />
         </div>
         <div className="right_col">
           <MyButton 
@@ -84,9 +75,7 @@ const BlogList = ({ blogList }) => {
           />
         </div>
       </div>
-      {getProcessedBlogList().map((it) => (
-        <BlogItem key={it.id} {...it} />
-      ))}
+      {getProcessedBlogList().map((it) => (<BlogItem key={it.id} {...it} />))}
     </div>
   );
 };

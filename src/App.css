@@ -147,35 +147,6 @@ header button {
   justify-content: space-between;
 }
 
-.BlogItem .emotion_img_wrapper {
-  cursor: pointer;
-  min-width: 120px;
-  height: 80px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-}
-
-.BlogItem .emotion_img_wrapper_1 {
-  background-color: #64c964;
-}
-.BlogItem .emotion_img_wrapper_2 {
-  background-color: #9bb772;
-}
-.BlogItem .emotion_img_wrapper_3 {
-  background-color: #fdce17;
-}
-.BlogItem .emotion_img_wrapper_4 {
-  background-color: #fd8446;
-}
-.BlogItem .emotion_img_wrapper_5 {
-  background-color: #fd565f;
-}
-
-.BlogItem .emotion_img_wrapper img {
-  width: 50%;
-}
-
 .BlogItem .info_wrapper {
   flex-grow: 1;
   margin-left: 20px;
@@ -185,6 +156,12 @@ header button {
 .BlogItem .blog_date {
   font-weight: bold;
   font-size: 25px;
+  margin-bottom: 5px;
+}
+
+.BlogItem .blog_title {
+  font-weight: bold;
+  font-size: 20px;
   margin-bottom: 5px;
 }
 
@@ -226,19 +203,18 @@ header button {
   font-size: 20px;
 }
 
-.BlogEditor .emotion_list_wrapper {
-  display: grid;
-  grid-template-columns: repeat(5, auto);
-  gap: 2%;
+.BlogEditor .control_box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.BlogEditor textarea {
+.BlogEditor input, textarea {
   font-family: "Nanum Pen Script";
   font-size: 20px;
 
   box-sizing: border-box;
   width: 100%;
-  min-height: 200px;
   resize: vertical;
 
   border: none;
@@ -248,63 +224,18 @@ header button {
   padding: 20px;
 }
 
+.BlogEditor .title_input {
+  min-height: 50px;
+}
+
+.BlogEditor .content_area {
+  min-height: 200px;
+}
+
 .BlogEditor .control_box {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-/* EmotionItem */
-
-.EmotionItem {
-  cursor: pointer;
-
-  border-radius: 5px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.EmotionItem img {
-  width: 50%;
-  margin-bottom:  10px;
-}
-
-.EmotionItem span {
-  font-size: 18px;
-}
-
-.EmotionItem_off {
-  background-color: #ececec;
-}
-
-.EmotionItem_on_1 {
-  background-color: #64c964;
-  color: white;
-}
-
-.EmotionItem_on_2 {
-  background-color: #9bb772;
-  color: white;
-}
-
-.EmotionItem_on_3 {
-  background-color: #fdce17;
-  color: white;
-}
-
-.EmotionItem_on_4 {
-  background-color: #fd8446;
-  color: white;
-}
-
-.EmotionItem_on_5 {
-  background-color: #fd565f;
-  color: white;
 }
 
 /* Blog */

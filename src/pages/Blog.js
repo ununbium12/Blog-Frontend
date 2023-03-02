@@ -5,7 +5,6 @@ import { BlogStateContext } from '../App';
 import MyButton from '../components/MyButton';
 import MyHeader from '../components/MyHeader';
 import { getStringDate } from '../util/date.js';
-import { emotionList } from '../util/emotion';
 
 const Bolg = () => {
 
@@ -44,12 +43,6 @@ const Bolg = () => {
     return <div className="BlogPage">로딩중입니다...</div>;
   } else {
 
-    const curEmotionData = emotionList.find(
-      (it) => parseInt(it.emotion_id) === parseInt(data.emotion))
-    ;
-
-    console.log(curEmotionData);
-
     return (
       <div className="BlogPage">
         <MyHeader 
@@ -66,21 +59,7 @@ const Bolg = () => {
         />
         <article>
           <section>
-            <h4>오늘의 감정</h4>
-            <div 
-              className={[
-                "blog_img_wrapper",
-                `blog_img_wrapper_${data.emotion}`,
-              ].join(" ")}
-            >
-              <img src={curEmotionData.emotion_img} />
-              <div className="emotion_descript">
-                {curEmotionData.emotion_descript}
-              </div>
-            </div>
-          </section>
-          <section>
-            <h4>게시물</h4>
+            <div className="title"><h4>{data.title}</h4></div>
             <div className="blog_content_wrapper">
               <p>{data.content}</p>
             </div>

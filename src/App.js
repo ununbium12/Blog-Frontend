@@ -1,6 +1,6 @@
 import './App.css';
-import React, { useReducer, useRef } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React, { useReducer, useRef, useEffect, useState } from 'react';
+import { BrowserRouter, Route, Routes, useParams } from 'react-router-dom';
 import Axios from 'axios';
 
 import Home from './pages/Home';
@@ -36,60 +36,66 @@ const reducer = (state, action) => {
     default:
       return state;
   }
+  localStorage.setItem("blog", JSON.stringify(newState));
   return newState;
 };
-
-// 삭제할 더미데이터
-const dummyData = [
-  {
-    id: 1,
-    emotion: 1,
-    content: "오늘의 일기 1번",
-    date : 1677490795348,
-  },
-  {
-    id: 2,
-    emotion: 2,
-    content: "오늘의 일기 2번",
-    date : 1677490795349,
-  },
-  {
-    id: 3,
-    emotion: 3,
-    content: "오늘의 일기 3번",
-    date : 1677490795350,
-  },
-  {
-    id: 4,
-    emotion: 4,
-    content: "오늘의 일기 4번",
-    date : 1677490795351,
-  },
-  {
-    id: 5,
-    emotion: 5,
-    content: "오늘의 일기 5번",
-    date : 1677490795352,
-  },
-];
 
 export const BlogStateContext = React.createContext();
 export const BlogDispatchContext = React.createContext();
 
 function App() {
 
-  const [data, dispatch] = useReducer(reducer, dummyData);
+  const [data, dispatch] = useReducer(reducer, []);
 
+  useEffect(() => {
+    const localData = localStorage.getItem("blog");
+    if (localData) {
+      const blogList = JSON.parse(localData).sort(
+        (a, b) => parseInt(b.id) - parseInt(a.id)
+      );
+
+      if (blogList.length >= 1) {
+        dataId.current = parseInt(blogList[0].id) + 1;
+        dispatch({ type: "INIT", data: blogList });
+      }
+    }
+  }, []);
+  
+  // const idx = match.params.idx;
+
+  // const getPostData = async (idx) => {
+  //   try {
+  //     const response = await Axios.get(`/api/boards/${idx}`);
+  //     return response.data;
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+  // // 컴포넌트에서 API 함수 호출하기
+  // const BlogPost = ({ idx }) => {
+  //   const [postData, setPostData] = useState(null);
+
+  //   useEffect(() => {
+  //     const fetchData = async () => {
+  //       const data = await getPostData(idx);
+  //       setPostData(data);
+  //     };
+  //     fetchData();
+  //   }, [idx]);
+  // };
+
+  // const [data, dispatch] = useReducer(reducer, [BlogPost]);
+  
   const dataId = useRef(6);
   // CREATE
-  const onCreate = (date, content, emotion) => {
+  const onCreate = (date, content, title) => {
     dispatch({
       type: "CREATE",
       data: {
         id: dataId.current,
         date: new Date(date).getTime(),
         content,
-        emotion,
+        title,
       },
     });
     dataId.current += 1;
@@ -99,14 +105,14 @@ function App() {
     dispatch({type:"REMOVE", targetId});
   };
   // EDIT
-  const onEdit = (targetId, date, content, emotion) => {
+  const onEdit = (targetId, date, content, title) => {
     dispatch({
       type:"EDIT",
       data: {
         id : targetId,
         date : new Date(date).getTime(),
         content,
-        emotion,
+        title,
       },
     });
   };
