@@ -18,7 +18,6 @@ const BlogList = () => {
     if (sortType == 'latest') {
       Axios.get(`http://localhost:8080/api/boards/list?page=0&size=10`)
         .then(res => {
-          console.log("test");
           setBlogList(res.data.content);
         })
         .catch(err => {

@@ -9,6 +9,7 @@ import MyHeader from './MyHeader';
 import { getStringDate } from '../util/date.js';
 
 const BlogEditor = ({ isEdit, originData }) => {
+  let userId = localStorage.getItem('userId');
   
   Axios.defaults.withCredentials = true; //axios
 
@@ -19,18 +20,8 @@ const BlogEditor = ({ isEdit, originData }) => {
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
   const [date, setDate] = useState(getStringDate(new Date()));
-
-  const { onCreate, onEdit, onRemove } = useContext(BlogDispatchContext);
   
   const navigate = useNavigate();
-
-  const handleSubmit = () => {
-    if(content.length < 1 && title.length < 1) {
-      titleRef.current.focus();
-      contentRef.current.focus();
-      return;
-    }
-  }
 
   useEffect(() => {
     const config = {
@@ -47,11 +38,88 @@ const BlogEditor = ({ isEdit, originData }) => {
         console.log(err);
       });
   },[]);
+ 
+
+
+  const handleSubmit = () => {
+    if(content.length < 1 && title.length < 1) {
+      titleRef.current.focus();
+      contentRef.current.focus();
+      return;
+    }
+    console.log(isEdit);
+    if(window.confirm(isEdit? "게시글을 수정하시겠습니까?" : "새 게시물을 업로드 하시겠습니까?")) {
+      if(!isEdit) {
+        //새로운 게시물 만들기
+        navigate('/', { replace: true });
+    
+        const data = {
+          'idx': null,
+          'userId': userId,
+          'title': title,
+          'content': content,
+          'writeDate': null,
+          'imageLoc': null,
+        }
+        Axios.post("./api/boards/write",
+        JSON.stringify(data),{
+          headers:{
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) =>{
+          alert("DB에 저장이 완료되었습니다");
+        }).catch((err) =>{
+          console.log(err.response.data.message);
+        })
+
+      } else {
+        //게시물 수정하기
+
+        navigate('/', { replace: true });
+
+        const data = {
+          'idx': idx,
+          'userId': userId,
+          'title': title,
+          'content': content,
+          'writeDate': null,
+          'imageLoc': null,
+        }
+        Axios.put(`http://localhost:8080/api/boards/update`,
+        JSON.stringify(data),{
+          headers:{
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) =>{
+          alert("DB에 수정이 완료되었습니다");
+        }).catch((err) =>{
+          console.log(err.response.data.message);
+        })
+      }
+    }
+  };
 
   const handleRemove = () => {
     if (window.confirm('정말 삭제하시겠습니까?')) {
-      onRemove(originData.id);
-      navigate('/', {replace : true})
+      navigate('/', { replace: true });
+
+        const data = {
+          'idx': idx,
+          'userId': userId,
+        }
+      Axios.post(`http://localhost:8080/api/boards/delete`,
+        JSON.stringify(data),{
+          headers:{
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) =>{
+          alert("DB에서 삭제가 완료되었습니다");
+        }).catch((err) =>{
+          console.log(err.response.data.message);
+        })
     }
   }
 
