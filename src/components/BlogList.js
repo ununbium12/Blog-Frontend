@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import BlogItem from "./BlogItem";
 import MyButton from "./MyButton";
-import { BlogStateContext, ListDataContext } from '../App';
 import Axios from 'axios';
 
 const sortOptionList = [
@@ -10,63 +9,78 @@ const sortOptionList = [
   {value : "oldest", name : "오래된 순"},
 ]
 
-const ControlMenu = React.memo(({ value, onChange, optionList }) => {
-  return (
-    <select
-      className="ControlMenu"
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-    >
-      {optionList.map((it, idx) => (
-        <option key={idx} value={it.value}>
-          {it.name}
-        </option>
-      ))}
-    </select>
-  );
-});
-
-const BlogList = ({ blogList }) => {
+const BlogList = () => {
   const navigate = useNavigate();
   const [sortType, setSortType] = useState('latest');
-  const [filter, setFilter] = useState("all");
+  const [blogList, setBlogList] = useState([]);
 
+  useEffect(() => {
+    if (sortType == 'latest') {
+      Axios.get(`http://localhost:8080/api/boards/list?page=0&size=10`)
+        .then(res => {
+          console.log("test");
+          setBlogList(res.data.content);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    } else {
+      Axios.get(`http://localhost:8080/api/boards/list/ASC?page=0&size=10`)
+        .then(res => {
+          setBlogList(res.data.content);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  }, []);
 
-  const getProcessedBlogList = () => {
+  const controlmenuOnChange = (e) => {
+    setSortType(e.target.value);
+    if (e.target.value == 'latest') {
+      Axios.get(`http://localhost:8080/api/boards/list?page=0&size=10`)
+        .then(res => {
+          setBlogList(res.data.content);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    } else {
+      Axios.get(`http://localhost:8080/api/boards/list/ASC?page=0&size=10`)
+        .then(res => {
+          setBlogList(res.data.content);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  }
 
-    const filterCallBack = (item) => {
-      if (filter === 'good') {
-        return parseInt(item.emotion) <= 3;
-      } else {
-        return parseInt(item.emotion) > 3;
-      }
-    };
-
-    const compare = (a, b) => {
-      if(sortType === 'latest') {
-        return parseInt(b.date) - parseInt(a.date);
-      } else {
-        return parseInt(a.date) - parseInt(b.date);
-      }
-    };
-
-    const copyList = JSON.parse(JSON.stringify(blogList));
-
-    const filteredList = filter === 'all' ? copyList : copyList.filter((it) => filterCallBack(it));
-
-    const sortedList = filteredList.sort(compare);
-    return sortedList;
-  };
-
+  if (blogList == null) {
+    return (
+      <div>로딩</div>
+    );
+  } else {
   return (
     <div className="BlogList">
       <div className="menu_wrapper">
         <div className="left_col">
-          <ControlMenu
+          <select
+            className="ControlMenu"
             value={sortType}
-            onChange={setSortType}
+            onChange={controlmenuOnChange}
+          >
+            {sortOptionList.map((it, idx) => (
+              <option key={idx} value={it.value}>
+                {it.name}
+              </option>
+            ))}
+          </select>
+          {/* <ControlMenu
+            value={sortType}
+            onChange={ControlmenuOnChange}
             optionList={sortOptionList}
-          />
+          /> */}
         </div>
         <div className="right_col">
           <MyButton 
@@ -76,13 +90,9 @@ const BlogList = ({ blogList }) => {
           />
         </div>
       </div>
-      {getProcessedBlogList().map((it) => (<BlogItem key={it.id} {...it} />))}
+      {blogList.map((it) => (<BlogItem key={it.id} {...it} />))}
     </div>
-  );
-};
-
-BlogList.defaultProps = {
-  blogList: [],
+  ); }
 };
 
 export default BlogList;

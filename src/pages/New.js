@@ -6,7 +6,7 @@ const New = () => {
   Axios.defaults.withCredentials = true; //axios
   
   let userId = localStorage.getItem('userId');
-  if(userId == ""){
+  if(userId === ""){
     window.location.href ="/login";
   }
   console.log(userId)

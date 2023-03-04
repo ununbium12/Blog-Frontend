@@ -13,7 +13,6 @@ const Blog = () => {
 
   const [data, setData] = useState([]);
 
-    
   useEffect(() => {
     const config = {
       headers:{
@@ -32,11 +31,11 @@ const Blog = () => {
 
 //////
 
-  let userId = localStorage.getItem('userId');
-  if(userId == ""){
+  let urId = localStorage.getItem('userId');
+  if(urId == ""){
     window.location.href ="/login";
   }
-  console.log(userId)
+  console.log(urId)
 
 
   const navigate = useNavigate();
@@ -73,32 +72,51 @@ const Blog = () => {
   if(!data) {
     return <div className="BlogPage">로딩중입니다...</div>;
   } else {
-
-    return (
-      
-      <div className="BlogPage">
-        <MyHeader 
-          headText={`${1} 게시물`} 
-          leftChild = {
-            <MyButton text={"< 뒤로가기"} onClick={() => navigate(-1)} />
-          }
-          rightChild = {
-            <MyButton 
-              text={"수정하기"} 
-              onClick={() => navigate(`/edit/${data.idx}`)} 
-            />
-          }
-        />
-        <article>
-          <section>
-            <div className="title"><h4>{data.title}</h4></div>
-            <div className="blog_content_wrapper">
-              <p>{data.content}</p>
-            </div>
-          </section>
-        </article>
-      </div>
-    );
+    if(urId === data.userId){
+      return (
+        <div className="BlogPage">
+          <MyHeader 
+            headText={`${1} 게시물`} 
+            leftChild = {
+              <MyButton text={"< 뒤로가기"} onClick={() => navigate(-1)} />
+            }
+            rightChild = {
+              <MyButton 
+                text={"수정하기"} 
+                onClick={() => navigate(`/edit/${data.idx}`)} 
+              />
+            }
+          />
+          <article>
+            <section>
+              <div className="title"><h4>{data.title}</h4></div>
+              <div className="blog_content_wrapper">
+                <p>{data.content}</p>
+              </div>
+            </section>
+          </article>
+        </div>
+      );
+    } else {
+      return (
+        <div className="BlogPage">
+          <MyHeader 
+            headText={`${1} 게시물`} 
+            leftChild = {
+              <MyButton text={"< 뒤로가기"} onClick={() => navigate(-1)} />
+            }
+          />
+          <article>
+            <section>
+              <div className="title"><h4>{data.title}</h4></div>
+              <div className="blog_content_wrapper">
+                <p>{data.content}</p>
+              </div>
+            </section>
+          </article>
+        </div>
+      );
+    }
   }
 };
   

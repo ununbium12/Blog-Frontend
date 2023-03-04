@@ -1,7 +1,6 @@
 import Axios from 'axios';
-
-import { useNavigate } from 'react-router-dom';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useContext, useRef, useState, useEffect } from 'react';
 import { BlogDispatchContext } from './../App.js';
 
 import MyButton from './MyButton';
@@ -13,7 +12,7 @@ const BlogEditor = ({ isEdit, originData }) => {
   
   Axios.defaults.withCredentials = true; //axios
 
-  let userId = localStorage.getItem('userId');
+  const idx = useParams().id;
 
   const contentRef = useRef();
   const titleRef = useRef();
@@ -22,7 +21,7 @@ const BlogEditor = ({ isEdit, originData }) => {
   const [date, setDate] = useState(getStringDate(new Date()));
 
   const { onCreate, onEdit, onRemove } = useContext(BlogDispatchContext);
-
+  
   const navigate = useNavigate();
 
   const handleSubmit = () => {
@@ -31,42 +30,23 @@ const BlogEditor = ({ isEdit, originData }) => {
       contentRef.current.focus();
       return;
     }
+  }
 
-    if(window.confirm(isEdit? "게시글을 수정하시겠습니까?" : "새 게시물을 업로드 하시겠습니까?")) {
-      if(!isEdit) {
-        onCreate(date, content, title);
-
-        navigate('/', { replace: true });
-    
-        const data = {
-          'idx': null,
-          'userId': userId,
-          'title': title,
-          'content': content,
-          'writeDate': null,
-          'imageLoc': null,
-        }
-        Axios.post("./api/boards/write",
-        JSON.stringify(data),{
-          headers:{
-            "Content-Type": "application/json",
-          },
-        })
-        .then((res) =>{
-          alert("DB에 저장이 완료되었습니다");
-        }).catch((err) =>{
-          console.log(err.response.data.message);
-        })
-
-      } else {
-        onEdit(originData.id, date, content, title);
-
-        navigate('/', { replace: true });
-
-        // 아직 미완성 수정버튼 눌러서 데이터 보내지 말것
-      }
-    }
-  };
+  useEffect(() => {
+    const config = {
+      headers:{
+        "Content-Type": "application/json",
+      },
+    };
+    Axios.get(`http://localhost:8080/api/boards/${idx}`, config)
+      .then(res => {
+        setTitle([res.data.title, ...title]);
+        setContent([res.data.content, ...content]);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },[]);
 
   const handleRemove = () => {
     if (window.confirm('정말 삭제하시겠습니까?')) {
@@ -74,14 +54,6 @@ const BlogEditor = ({ isEdit, originData }) => {
       navigate('/', {replace : true})
     }
   }
-
-  useEffect(()=>{
-    if(isEdit){
-      setDate(getStringDate(new Date(parseInt(originData.date))));
-      setContent(originData.content);
-      setTitle(originData.title);
-    }
-  },[isEdit, originData])
 
   return (
     <div className='BlogEditor'>

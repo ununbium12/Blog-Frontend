@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useReducer, useRef, useEffect, useState } from 'react';
-import { BrowserRouter, Route, Routes, useParams } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Axios from 'axios';
 
 import Home from './pages/Home';
@@ -79,34 +79,7 @@ function App() {
       }
     }
   }, []);
-  
-  // const idx = match.params.idx;
 
-  // const getPostData = async (idx) => {
-  //   try {
-  //     const response = await Axios.get(`/api/boards/${idx}`);
-  //     return response.data;
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-  // // 컴포넌트에서 API 함수 호출하기
-  // const BlogPost = ({ idx }) => {
-  //   const [postData, setPostData] = useState(null);
-
-  //   useEffect(() => {
-  //     const fetchData = async () => {
-  //       const data = await getPostData(idx);
-  //       setPostData(data);
-  //     };
-  //     fetchData();
-  //   }, [idx]);
-  // };
-
-  // const [data, dispatch] = useReducer(reducer, [BlogPost]);
-
-  
-  
   const dataId = useRef(6);
   // CREATE
   const onCreate = (date, content, title) => {
@@ -138,7 +111,6 @@ function App() {
     });
   };
 
-  
   return ( 
     <BlogStateContext.Provider value={listData}>
       <BlogDispatchContext.Provider value={{onCreate, onEdit, onRemove,}}>
