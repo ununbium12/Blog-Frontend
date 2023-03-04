@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
-import { BlogStateContext } from '../App';
+import { BlogStateContext, ListDataContext } from '../App';
 
 import MyHeader from './../components/MyHeader';
 import MyButton from './../components/MyButton';
@@ -23,31 +23,10 @@ const Home = () => {
   const [data, setData] = useState([]);
   const [curDate, setCurDate] = useState(new Date());
   const headText = `${curDate.getFullYear()}년 ${curDate.getMonth() + 1}월`;
-  const [listData, setListData] = useState([]);
-  
-  useEffect(() => {
-    const config = {
-      headers:{
-        "Content-Type": "application/json",
-      },
-    };
-    Axios.get("./api/boards/list", config)
-      .then(res => {
-        console.log(res.data);
-        setListData(res.data.content.map((it) => {
-          return {
-            idx : it.idx,
-            userId : it.userId,
-            title : it.title,
-            content : it.content,
-            writeDate : it.writeDate,
-          };
-        }).slice(0, 20));
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  },[]);
+
+  //app.js에 있는 리스트 데이터 불러오기
+  const listData = useContext(ListDataContext);
+
 
   useEffect(()=>{
     if(blogList.length >= 1) {
@@ -87,12 +66,7 @@ const Home = () => {
 
   return (
     <div>
-      <MyHeader
-        headText={headText} 
-        leftChild={<MyButton text={"<"} onClick={decreaseMonth} />}
-        rightChild={<MyButton text={">"} onClick={increaseMonth} />}
-      />
-      <BlogList blogList={listData} />
+      <BlogList blogList={blogList} />
     </div>
   );
 };

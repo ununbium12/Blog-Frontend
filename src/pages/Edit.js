@@ -8,17 +8,40 @@ const Edit = () => {
 
   Axios.defaults.withCredentials = true; //axios
 
+  const idx = useParams().id;
+  const [data, setData] = useState([]);
+  const [originData, setOriginData] = useState();
+  const navigate = useNavigate();
+  const { id } = useParams();
+
+
+  const blogList = useContext(BlogStateContext);
+  
+
   let userId = localStorage.getItem('userId');
   if(userId == ""){
     window.location.href ="/login";
   }
   console.log(userId)
 
-  const [originData, setOriginData] = useState();
-  const navigate = useNavigate();
-  const { id } = useParams();
+/////
+useEffect(() => {
+  const config = {
+    headers:{
+      "Content-Type": "application/json",
+    },
+  };
+  Axios.get(`http://localhost:8080/api/boards/${idx}`, config)
+    .then(res => {
+      console.log(res.data);
+      setData([res.data, ...data]);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+},[]);
 
-  const blogList = useContext(BlogStateContext);
+//////
   
   useEffect(() => {
     if(blogList.length >= 1) {

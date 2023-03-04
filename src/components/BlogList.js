@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import BlogItem from "./BlogItem";
 import MyButton from "./MyButton";
+import { BlogStateContext, ListDataContext } from '../App';
 import Axios from 'axios';
 
 const sortOptionList = [

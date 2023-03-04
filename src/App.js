@@ -42,8 +42,27 @@ const reducer = (state, action) => {
 
 export const BlogStateContext = React.createContext();
 export const BlogDispatchContext = React.createContext();
+export const ListDataContext = React.createContext();
 
 function App() {
+
+  const [listData, setListData] = useState([]);
+  
+  useEffect(() => {
+    const config = {
+      headers:{
+        "Content-Type": "application/json",
+      },
+    };
+    Axios.get("./api/boards/list", config)
+      .then(res => {
+        console.log(res.data);
+        setListData(res.data.content);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },[]);
 
   const [data, dispatch] = useReducer(reducer, []);
 
@@ -85,6 +104,8 @@ function App() {
   // };
 
   // const [data, dispatch] = useReducer(reducer, [BlogPost]);
+
+  
   
   const dataId = useRef(6);
   // CREATE
@@ -117,8 +138,9 @@ function App() {
     });
   };
 
+  
   return ( 
-    <BlogStateContext.Provider value={data}>
+    <BlogStateContext.Provider value={listData}>
       <BlogDispatchContext.Provider value={{onCreate, onEdit, onRemove,}}>
         <BrowserRouter>
           <div className="App">
