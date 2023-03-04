@@ -1,7 +1,6 @@
 import Axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useContext, useRef, useState, useEffect } from 'react';
-import { BlogDispatchContext } from './../App.js';
+import { useRef, useState, useEffect } from 'react';
 
 import MyButton from './MyButton';
 import MyHeader from './MyHeader';
@@ -29,14 +28,17 @@ const BlogEditor = ({ isEdit, originData }) => {
         "Content-Type": "application/json",
       },
     };
+
+    if(idx !== undefined) { 
     Axios.get(`http://localhost:8080/api/boards/${idx}`, config)
       .then(res => {
-        setTitle([res.data.title, ...title]);
-        setContent([res.data.content, ...content]);
+        setTitle(res.data.title, ...title);
+        setContent(res.data.content, ...content);
       })
       .catch(err => {
         console.log(err);
       });
+    }
   },[]);
  
 
@@ -52,6 +54,7 @@ const BlogEditor = ({ isEdit, originData }) => {
       if(!isEdit) {
         //새로운 게시물 만들기
         navigate('/', { replace: true });
+        window.location.replace("/");
     
         const data = {
           'idx': null,
@@ -77,6 +80,7 @@ const BlogEditor = ({ isEdit, originData }) => {
         //게시물 수정하기
 
         navigate('/', { replace: true });
+        window.location.replace("/");
 
         const data = {
           'idx': idx,
@@ -103,7 +107,9 @@ const BlogEditor = ({ isEdit, originData }) => {
 
   const handleRemove = () => {
     if (window.confirm('정말 삭제하시겠습니까?')) {
+
       navigate('/', { replace: true });
+      window.location.replace("/");
 
         const data = {
           'idx': idx,

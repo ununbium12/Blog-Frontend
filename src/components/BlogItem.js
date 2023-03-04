@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import MyButton from "./MyButton";
 
-const BlogItem = ({idx, content, writeDate, title, userId}) => {
+const BlogItem = ({ id, idx, content, writeDate, title, userId}) => {
   
   let urId = localStorage.getItem('userId');
 

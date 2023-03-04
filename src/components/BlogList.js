@@ -75,11 +75,6 @@ const BlogList = () => {
               </option>
             ))}
           </select>
-          {/* <ControlMenu
-            value={sortType}
-            onChange={ControlmenuOnChange}
-            optionList={sortOptionList}
-          /> */}
         </div>
         <div className="right_col">
           <MyButton 
@@ -89,7 +84,7 @@ const BlogList = () => {
           />
         </div>
       </div>
-      {blogList.map((it) => (<BlogItem key={it.id} {...it} />))}
+      {blogList.map((it) => (<BlogItem key={it.idx} {...it} />))}
     </div>
   ); }
 };
