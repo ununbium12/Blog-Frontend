@@ -82,3 +82,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 5. assets = 이미지 파일 저장 폴더
 
 그외의 삭제된 폴더는 필요 없다고 판단되어 삭제
+
+### 2023.03.04 / 수정 및 삭제 기능 추가
+
+1. 수정 및 삭제 기능 추가
+2. 수정할때 문제점 제목(title), 내용(content) 둘 중 하나라도 바꾸지 않으면 오류 발생
