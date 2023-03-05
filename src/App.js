@@ -10,8 +10,10 @@ import Blog from './pages/Blog';
 import Login from './login_register/Login';
 import Register from './login_register/Register';
 import Header from './components/Header';
-import RouteTest from './components/RouteTest';
+// import RouteTest from './components/RouteTest';
 import Logout from './login_register/Logout';
+import NotFound from './pages/NotFound';
+import Bottom from './components/Bottom';
 
 Axios.defaults.withCredentials = true; //axios
 
@@ -44,13 +46,9 @@ function App() {
     <BlogStateContext.Provider value={listData}>
       <BrowserRouter>
         <div className="App">
-          <div>
-            {
-              userId !== null
-              ? <Header />
-              : null
-            }
-          </div>
+          { userId === ""
+            ? "" : <Header />
+          }
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/new' element={<New />} />
@@ -60,10 +58,10 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/logout' element={<Logout />} />
+            <Route path='/*' element={<NotFound />}></Route>
           </Routes>
-          <br/>
-          <RouteTest/>
         </div>
+        <Bottom />
       </BrowserRouter>
     </BlogStateContext.Provider>
   );

@@ -61,29 +61,29 @@ export default function App() {
   Axios.defaults.withCredentials = true; //axios
 
   return (
-    <div className="userLoginBox" >
+    <div className="Login-content" >
       <div className="form-box login-register-form-element" id="userLoginBox_in">	
         <h2 className="form-box-title">계정 로그인</h2>	
         <form className="form" id="loginFrm" >
           <div className="form-row">
             <div className="form-item">
               <div className="form-input">
-                <input type="text" id="userId" name="userId" placeholder="아이디" onChange={onChange}/>
+                <input className="text_Id" type="text" id="userId" name="userId" placeholder="아이디" onChange={onChange}/>
               </div>
             </div>
           </div>
+          <br/>
           <div className="form-row">
             <div className="form-item">
               <div className="form-input">
-                <input type="password" id="password" name="password" placeholder="비밀번호" onChange={onChange}/>
+                <input className="text_Pw" type="password" id="password" name="password" placeholder="비밀번호" onChange={onChange}/>
               </div>
             </div>
           </div>
+          <br />
           <div className="form-row">
-            <div className="form-item">
-              <input type="button" className="button medium secondary" onClick={letsLogin} id="loginBtn"  value="로그인"/>
-              <input type="button" className="button register" onClick={letRegister} id="registerBtn"  value="회원가입"/>
-            </div>
+            <input type="button" className="btn_Login" onClick={letsLogin} id="loginBtn"  value="로그인"/>
+            <input type="button" className="btn_register" onClick={letRegister} id="registerBtn"  value="회원가입"/>
           </div>
         </form>
       </div>

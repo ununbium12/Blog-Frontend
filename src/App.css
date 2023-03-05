@@ -275,32 +275,32 @@ header button {
   line-height: 2.5;
 }
 
-.HeaderImg {
+/* header */
+
+.header-container {
   position: relative;
+}
+
+.HeaderImg {
+  display: block;
   width: 100%;
-  height: 80%;
+  height: auto;
 }
 
 .LogoutButton {
-  Display: flex;
-  justify-content: center;
-  align-items: center;
   position: absolute;
-	top: 32%;
-	left: 61.8%;
+  bottom: 2.5%;
+  right: 4%;
+  transform: translate(50%, 50%);
   transition: 0.3s;
   margin: 1rem;
-
-  margin-right: 10px;
   border: none;
   border-radius: 5px;
   background-color: #ececec;
-
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 20px;
   padding-right: 20px;
-
   cursor: pointer;
   font-family: "Nanum Pen Script";
   font-size: 18px;
@@ -308,6 +308,155 @@ header button {
 
 .LogoutButton:hover {
   background: transparent;
+  box-shadow: inset 54px 0 0 0 var(--btn-bg),
+    inset -54px 0 0 0 var(--btn-bg);
+}
+
+/* bottom */
+
+.bottom-container {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+
+  border-top: 2px solid #ececec;
+
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+/* Login */
+
+.form-box {
+  padding-top: 1px;
+  padding-bottom: 200px;
+  padding-right: 30px;
+  padding-left: 30px;
+  background-color: #64c964;
+  border: none;
+  border-radius: 10px;
+}
+
+.form-input .text_Id, .text_Pw, .text_urName, .text_rePw{
+  font-family: "Nanum Pen Script";
+  font-size: 20px;
+
+  box-sizing: border-box;
+  width: 100%;
+  resize: vertical;
+
+  border: none;
+  border-radius: 5px;
+  background-color: #ececec;
+
+  padding: 20px;
+}
+
+.btn_Login {
+  position: relative;
+  bottom: 2.5%;
+  right: 7.9%;
+  transform: translate(50%, 50%);
+  transition: 0.3s;
+  margin: 1rem;
+  border: 1px solid #ececec;
+  border-radius: 5px;
+  background-color: #ececec;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  cursor: pointer;
+  font-family: "Nanum Pen Script";
+  font-size: 18px;
+}
+
+.btn_Login:hover {
+  background: transparent;
+  border: 1px solid #ececec;
+  color: #e2e2e2;
+  box-shadow: inset 54px 0 0 0 var(--btn-bg),
+    inset -54px 0 0 0 var(--btn-bg);
+}
+
+.btn_register {
+  position: relative;
+  bottom: 2.5%;
+  right: -58%;
+  transform: translate(50%, 50%);
+  transition: 0.3s;
+  margin: 1rem;
+  border: 1px solid #ececec;
+  border-radius: 5px;
+  background-color: #ececec;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  cursor: pointer;
+  font-family: "Nanum Pen Script";
+  font-size: 18px;
+}
+
+.btn_register:hover {
+  background: transparent;
+  border: 1px solid #ececec;
+  color: #e2e2e2;
+  box-shadow: inset 54px 0 0 0 var(--btn-bg),
+    inset -54px 0 0 0 var(--btn-bg);
+}
+
+.btn_singup {
+  position: relative;
+  bottom: 2.5%;
+  right: 10%;
+  transform: translate(50%, 50%);
+  transition: 0.3s;
+  margin: 1rem;
+  border: 1px solid #ececec;
+  border-radius: 5px;
+  background-color: #ececec;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  cursor: pointer;
+  font-family: "Nanum Pen Script";
+  font-size: 18px;
+}
+
+.btn_singup:hover {
+  background: transparent;
+  border: 1px solid #ececec;
+  color: #e2e2e2;
+  box-shadow: inset 54px 0 0 0 var(--btn-bg),
+    inset -54px 0 0 0 var(--btn-bg);
+}
+
+.btn_login {
+  position: relative;
+  bottom: 2.5%;
+  right: -53.5%;
+  transform: translate(50%, 50%);
+  transition: 0.3s;
+  margin: 1rem;
+  border: 1px solid #ececec;
+  border-radius: 5px;
+  background-color: #ececec;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  cursor: pointer;
+  font-family: "Nanum Pen Script";
+  font-size: 18px;
+}
+
+.btn_login:hover {
+  background: transparent;
+  border: 1px solid #ececec;
+  color: #e2e2e2;
   box-shadow: inset 54px 0 0 0 var(--btn-bg),
     inset -54px 0 0 0 var(--btn-bg);
 }

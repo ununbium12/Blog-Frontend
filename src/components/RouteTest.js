@@ -3,7 +3,7 @@ import Logout from "../login_register/Logout";
 
 const RouteTest = () => {
   return (
-    
+    // 임시 확인용 코드입니다.
     <>
     <Link to={"/"}>HOME</Link>
     <br/>

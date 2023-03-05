@@ -4,9 +4,6 @@ import Axios from 'axios';
 
 export default function App() {
   let userId = document.querySelector('#userId');
-  if(userId == null){
-    window.location.href ="/login";
-  }
 	let passwordForm = document.querySelector('#password');
 	let re_passwordForm = document.querySelector('#re_password');
 	
@@ -68,12 +65,17 @@ export default function App() {
       })
       .then(res =>{
         alert("성공했습니다");
+        window.location.href ="/login"
       }).catch((err) =>{
         alert("에러가 발생했습니다.");
         console.log(err.response.data.message);
       })
     }
   };
+
+  function loginpage () {
+    window.location.href ="/"
+  }
 
   Axios.defaults.withCredentials = true; //axios
 
@@ -82,37 +84,43 @@ export default function App() {
       <div className="form-box login-register-form-element" id="userJoinInner">
         <h2 className="form-box-title">계정 만들기</h2>
         <form className="form" id="registerFrm" name="register-page" >
+          <br/>
           <div className="form-row">
             <div className="form-item">
               <div className="form-input">
-                <input type="text" id="userId" name="userId" onChange={onChange}  placeholder="아이디" />
+                <input className="text_Id" type="text" id="userId" name="userId" onChange={onChange}  placeholder="아이디" />
               </div>
             </div>
           </div>
+          <br/>
           <div className="form-row">
             <div className="form-item">
               <div className="form-input">
-                <input type="text" id="userName" name="userName" onChange={onChange}  placeholder="유저이름" />
+                <input className="text_urName" type="text" id="userName" name="userName" onChange={onChange}  placeholder="유저이름" />
               </div>
             </div>
           </div>
+          <br/>
            <div className="form-row">
             <div className="form-item">
               <div className="form-input">
-                <input type="password" id="password" name="password" onChange={onChange} placeholder="비밀번호"/>
+                <input className="text_Pw" type="password" id="password" name="password" onChange={onChange} placeholder="비밀번호"/>
               </div>
             </div>
           </div>
+          <br/>
           <div className="form-row">
             <div className="form-item">
               <div className="form-input">
-                <input type="password" id="re_password" name="re_password" onChange={onChange} placeholder="비밀번호 확인"/>
+                <input className="text_rePw" type="password" id="re_password" name="re_password" onChange={onChange} placeholder="비밀번호 확인"/>
               </div>
             </div>
           </div>
+          <br/>
           <div className="form-row">
             <div className="form-item">
-              <input type="button" className="button medium primary"  onClick={letsJoin} id="joinBtn" value="가입하기"/>
+              <input type="button" className="btn_singup"  onClick={letsJoin} id="joinBtn" value="가입하기"/>
+              <input type="button" className="btn_login"  onClick={loginpage} id="loginBtn" value="로그인하기"/>
             </div>
           </div>
         </form>
