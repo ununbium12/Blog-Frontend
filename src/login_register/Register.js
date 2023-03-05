@@ -66,9 +66,10 @@ export default function App() {
         "Content-Type": "application/json",
       },
       })
-      .then((res) =>{
+      .then(res =>{
         alert("성공했습니다");
       }).catch((err) =>{
+        alert("에러가 발생했습니다.");
         console.log(err.response.data.message);
       })
     }

@@ -15,12 +15,13 @@ const BlogList = () => {
   const [blogList, setBlogList] = useState([]);
 
   useEffect(() => {
-    if (sortType == 'latest') {
+    if (sortType === 'latest') {
       Axios.get(`http://localhost:8080/api/boards/list?page=0&size=10`)
         .then(res => {
           setBlogList(res.data.content);
         })
         .catch(err => {
+          alert("에라가 발생했습니다.");
           console.log(err);
         });
     } else {
@@ -29,19 +30,21 @@ const BlogList = () => {
           setBlogList(res.data.content);
         })
         .catch(err => {
+          alert("에라가 발생했습니다.");
           console.log(err);
         });
     }
-  }, []);
+  }, [sortType]);
 
   const controlmenuOnChange = (e) => {
     setSortType(e.target.value);
-    if (e.target.value == 'latest') {
+    if (e.target.value === 'latest') {
       Axios.get(`http://localhost:8080/api/boards/list?page=0&size=10`)
         .then(res => {
           setBlogList(res.data.content);
         })
         .catch(err => {
+          alert("에라가 발생했습니다.");
           console.log(err);
         });
     } else {
@@ -50,6 +53,7 @@ const BlogList = () => {
           setBlogList(res.data.content);
         })
         .catch(err => {
+          alert("에라가 발생했습니다.");
           console.log(err);
         });
     }

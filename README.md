@@ -87,3 +87,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 1. 수정 및 삭제 기능 추가
 2. 일부 오류 수정
+
+### 2023.03.05 / 오류 수정 및 화면 구성
+
+1. 안보여도 되는 console.log 삭제
+2. 일부 오류 수정
+3. 화면 헤더 부분 메인페이지로 이동하는 이미지 추가

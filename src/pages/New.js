@@ -9,7 +9,6 @@ const New = () => {
   if(userId === ""){
     window.location.href ="/login";
   }
-  console.log(userId)
   
   return (
     <div>

@@ -3,12 +3,11 @@ import Axios from 'axios';
 import React, { useState } from 'react'  
 
 export default function App() {
-	let password = document.querySelector('#password'); //아이디 중복 확인 버튼
+	// let password = document.querySelector('#password'); //아이디 중복 확인 버튼
   let userId = localStorage.getItem('userId');
-  if(userId != ""){
+  if(userId !== ""){
     window.location.href ="/";
   }
-  console.log(userId)
 
 	const [inputs, setInputs] = useState({  
     userId: '',
@@ -40,17 +39,16 @@ export default function App() {
           },
         })
         .then((response)=> {
-          console.log(response);
-          if(response.data=="0"||response.data=="1"){
+          if(response.data==="0"||response.data==="1"){
             alert("로그인 실패했습니다.");
           }else{
             alert("로그인 성공했다 머머리야");
             var userId = inputs.userId;
             localStorage.setItem("userId", userId);
             window.location.href ="/"
-            // window.localStorage.setItem("");
           }
       }).catch((err) =>{
+        alert("에러가 발생했습니다.");
         console.log(err.response.data.message);
       })
 		}

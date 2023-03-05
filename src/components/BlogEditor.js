@@ -7,7 +7,7 @@ import MyHeader from './MyHeader';
 
 import { getStringDate } from '../util/date.js';
 
-const BlogEditor = ({ isEdit, originData }) => {
+const BlogEditor = ({ isEdit }) => {
   let userId = localStorage.getItem('userId');
   
   Axios.defaults.withCredentials = true; //axios
@@ -39,17 +39,15 @@ const BlogEditor = ({ isEdit, originData }) => {
         console.log(err);
       });
     }
-  },[]);
+  },[content, idx, title]);
  
-
-
   const handleSubmit = () => {
     if(content.length < 1 && title.length < 1) {
       titleRef.current.focus();
       contentRef.current.focus();
       return;
     }
-    console.log(isEdit);
+
     if(window.confirm(isEdit? "게시글을 수정하시겠습니까?" : "새 게시물을 업로드 하시겠습니까?")) {
       if(!isEdit) {
         //새로운 게시물 만들기
@@ -129,72 +127,135 @@ const BlogEditor = ({ isEdit, originData }) => {
     }
   }
 
-  return (
-    <div className='BlogEditor'>
-      <MyHeader 
-        headText={isEdit ? "게시물 수정하기" : "새 게시물 쓰기"} 
-        leftChild={
-          <MyButton
-            onClick={()=>{navigate(-1);}}
-            text={"< 뒤로가기"}
-          />
-        }
-        rightChild={
-          <MyButton
-            text={'삭제하기'}
-            type={'negative'}
-            onClick={handleRemove}
-          />
-        }
-      />
-      <div>
-        <section>
-          <h4>오늘은 날짜는?</h4>
-          <div className='input_box'>
-            <input
-              className='input_date'
-              value={date}
-              onChange = {(e) => setDate(e.target.value)}
-              type="date"
-            />
-          </div>
-        </section>
-        <section>
-          <h4>게시글 쓰기</h4>
-          <div className='input_box text_wrapper'>
-            <input
-              type="text"
-              className='title_input' 
-              placeholder="제목을 적어주세요"
-              ref={titleRef}
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            ></input>
-          </div>
-          <br/>
-          <div className='input_box text_wrapper'>
-            <textarea
-              className='content_area'
-              placeholder="사랑하긴 했었나요 스쳐가는 인연이었나요"
-              ref={contentRef} 
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-            />
-          </div>
-        </section>
-        <section>
-          <div className='control_box'>
-            <MyButton text={'취소하기'} onClick={() => navigate(-1)}/>
+
+  if(!isEdit) {
+    return (
+      <div className='BlogEditor'>
+        <MyHeader 
+          headText={isEdit ? "게시물 수정하기" : "새 게시물 쓰기"} 
+          leftChild={
             <MyButton
-              text={"작성완료"}
-              type={"positive"}
-              onClick={handleSubmit}
+              onClick={()=>{navigate(-1);}}
+              text={"< 뒤로가기"}
             />
-          </div>
-        </section>
+          }
+        />
+        <div>
+          <section>
+            <h4>오늘은 날짜는?</h4>
+            <div className='input_box'>
+              <input
+                className='input_date'
+                value={date}
+                onChange = {(e) => setDate(e.target.value)}
+                type="date"
+              />
+            </div>
+          </section>
+          <section>
+            <h4>게시글 쓰기</h4>
+            <div className='input_box text_wrapper'>
+              <input
+                type="text"
+                className='title_input' 
+                placeholder="제목을 적어주세요"
+                ref={titleRef}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              ></input>
+            </div>
+            <br/>
+            <div className='input_box text_wrapper'>
+              <textarea
+                className='content_area'
+                placeholder="사랑하긴 했었나요 스쳐가는 인연이었나요"
+                ref={contentRef} 
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+              />
+            </div>
+          </section>
+          <section>
+            <div className='control_box'>
+              <MyButton text={'취소하기'} onClick={() => navigate(-1)}/>
+              <MyButton
+                text={"작성완료"}
+                type={"positive"}
+                onClick={handleSubmit}
+              />
+            </div>
+          </section>
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className='BlogEditor'>
+        <MyHeader 
+          headText={isEdit ? "게시물 수정하기" : "새 게시물 쓰기"} 
+          leftChild={
+            <MyButton
+              onClick={()=>{navigate(-1);}}
+              text={"< 뒤로가기"}
+            />
+          }
+          rightChild={
+            <MyButton
+              text={'삭제하기'}
+              type={'negative'}
+              onClick={handleRemove}
+            />
+          }
+        />
+        <div>
+          <section>
+            <h4>오늘은 날짜는?</h4>
+            <div className='input_box'>
+              <input
+                className='input_date'
+                value={date}
+                onChange = {(e) => setDate(e.target.value)}
+                type="date"
+              />
+            </div>
+          </section>
+          <section>
+            <h4>게시글 쓰기</h4>
+            <div className='input_box text_wrapper'>
+              <input
+                type="text"
+                className='title_input' 
+                placeholder="제목을 적어주세요"
+                ref={titleRef}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              ></input>
+            </div>
+            <br/>
+            <div className='input_box text_wrapper'>
+              <textarea
+                className='content_area'
+                placeholder="사랑하긴 했었나요 스쳐가는 인연이었나요"
+                ref={contentRef} 
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+              />
+            </div>
+          </section>
+          <section>
+            <div className='control_box'>
+              <MyButton text={'취소하기'} onClick={() => navigate(-1)}/>
+              <MyButton
+                text={"작성완료"}
+                type={"positive"}
+                onClick={handleSubmit}
+              />
+            </div>
+          </section>
+        </div>
+      </div>
+    );
+  }
 };
 
 export default BlogEditor;

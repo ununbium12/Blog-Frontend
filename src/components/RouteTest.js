@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 import Logout from "../login_register/Logout";
 
-let userId = localStorage.getItem('userId');
 const RouteTest = () => {
   return (
     

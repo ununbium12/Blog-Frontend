@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import MyButton from '../components/MyButton';
 import MyHeader from '../components/MyHeader';
@@ -21,10 +21,10 @@ const Blog = () => {
     };
     Axios.get(`http://localhost:8080/api/boards/${idx}`, config)
       .then(res => {
-        console.log(res.data);
         setData([res.data, ...data]);
       })
       .catch(err => {
+        alert("에라가 발생했습니다.");
         console.log(err);
       });
     },[]);
@@ -32,17 +32,11 @@ const Blog = () => {
 //////
 
   let urId = localStorage.getItem('userId');
-  if(urId == ""){
+  if(urId === ""){
     window.location.href ="/login";
   }
-  console.log(urId)
-
 
   const navigate = useNavigate();
-
-  console.log(data);
-
-
 
   useEffect(() => {
     if(data.length >= 1) {
@@ -59,15 +53,8 @@ const Blog = () => {
         navigate("/", { replace: true });
       }
     }
-  }, [idx, data]);
-  
-  console.log(data);
-  /*
-  if(data.date.indexOf(" ")==10){
-    data.date.indexOf(" ","T");
-  }
+  }, [idx, data, navigate]);
 
-  */
 
   if(!data) {
     return <div className="BlogPage">로딩중입니다...</div>;

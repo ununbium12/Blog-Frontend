@@ -14,9 +14,7 @@ const Edit = () => {
   if(userId === ""){
     window.location.href ="/login";
   }
-  console.log(userId)
 
-/////
 useEffect(() => {
   const config = {
     headers:{
@@ -25,10 +23,10 @@ useEffect(() => {
   };
   Axios.get(`http://localhost:8080/api/boards/${idx}`, config)
     .then(res => {
-      console.log(res.data);
       setData([res.data, ...data]);
     })
     .catch(err => {
+      alert("에라가 발생했습니다.");
       console.log(err);
     });
 },[]);
