@@ -321,6 +321,7 @@ header button {
 .imgup .LogoutButton:hover {
   background: transparent;
   color: #ececec;
+  background-color: gray;
   box-shadow: inset 54px 0 0 0 var(--btn-bg),
     inset -54px 0 0 0 var(--btn-bg);
 }

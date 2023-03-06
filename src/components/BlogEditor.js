@@ -39,7 +39,7 @@ const BlogEditor = ({ isEdit }) => {
         console.log(err);
       });
     }
-  },[content, idx, title]);
+  },[]);
  
   const handleSubmit = () => {
     if(content.length < 1 && title.length < 1) {
