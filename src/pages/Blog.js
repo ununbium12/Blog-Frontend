@@ -63,7 +63,7 @@ const Blog = () => {
       return (
         <div className="BlogPage">
           <MyHeader 
-            headText={`${1} 게시물`} 
+            headText={`게시물`} 
             leftChild = {
               <MyButton text={"< 뒤로가기"} onClick={() => navigate(-1)} />
             }
@@ -88,7 +88,7 @@ const Blog = () => {
       return (
         <div className="BlogPage">
           <MyHeader 
-            headText={`${1} 게시물`} 
+            headText={`게시물`} 
             leftChild = {
               <MyButton text={"< 뒤로가기"} onClick={() => navigate(-1)} />
             }

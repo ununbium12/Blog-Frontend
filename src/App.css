@@ -287,7 +287,19 @@ header button {
   height: auto;
 }
 
-.LogoutButton {
+.imgup {
+
+}
+
+.imgup .textup {
+  position: absolute;
+  bottom: 1.3%;
+  right: 28%;
+  transform: translate(50%, 50%);
+  color: #ececec;
+}
+
+.imgup .LogoutButton {
   position: absolute;
   bottom: 2.5%;
   right: 4%;
@@ -306,8 +318,9 @@ header button {
   font-size: 18px;
 }
 
-.LogoutButton:hover {
+.imgup .LogoutButton:hover {
   background: transparent;
+  color: #ececec;
   box-shadow: inset 54px 0 0 0 var(--btn-bg),
     inset -54px 0 0 0 var(--btn-bg);
 }
@@ -374,6 +387,7 @@ header button {
 
 .btn_Login:hover {
   background: transparent;
+  background-color: #008900;
   border: 1px solid #ececec;
   color: #e2e2e2;
   box-shadow: inset 54px 0 0 0 var(--btn-bg),
@@ -401,6 +415,7 @@ header button {
 
 .btn_register:hover {
   background: transparent;
+  background-color: #008900;
   border: 1px solid #ececec;
   color: #e2e2e2;
   box-shadow: inset 54px 0 0 0 var(--btn-bg),
@@ -428,6 +443,7 @@ header button {
 
 .btn_singup:hover {
   background: transparent;
+  background-color: #008900;
   border: 1px solid #ececec;
   color: #e2e2e2;
   box-shadow: inset 54px 0 0 0 var(--btn-bg),
@@ -455,6 +471,7 @@ header button {
 
 .btn_login:hover {
   background: transparent;
+  background-color: #008900;
   border: 1px solid #ececec;
   color: #e2e2e2;
   box-shadow: inset 54px 0 0 0 var(--btn-bg),

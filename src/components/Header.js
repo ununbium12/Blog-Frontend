@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Logout from "../login_register/Logout";
 
 const Header = () => {
+  const userId = localStorage.getItem("userId");
   return (
     <>
       <div className="header-container">
@@ -12,9 +13,12 @@ const Header = () => {
             alt="게시판 메인 이미지"
           />
         </Link>
-        <button className="LogoutButton" onClick={Logout}>
+        <div className="imgup">
+          <h1 className="textup">{`${userId}`}님 안녕하세요</h1>
+          <button className="LogoutButton" onClick={Logout}>
           로그아웃
-        </button>
+          </button>
+        </div>
       </div>
       <br />
     </>
