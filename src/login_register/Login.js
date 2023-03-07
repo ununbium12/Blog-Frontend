@@ -42,7 +42,6 @@ export default function App() {
           if(response.data==="0"||response.data==="1"){
             alert("로그인 실패했습니다.");
           }else{
-            alert("로그인 성공했다 머머리야");
             var userId = inputs.userId;
             localStorage.setItem("userId", userId);
             window.location.href ="/"
