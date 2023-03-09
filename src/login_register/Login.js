@@ -24,7 +24,7 @@ export default function App() {
 		if(inputs.userId===""){
       alert("아이디를 입력해주세요.");
 			return;
-		}else if(inputs.password==="false"){
+		}else if(inputs.password===""){
 			alert("비밀번호를 입력해주세요");
 			return;
 		}else{
@@ -39,7 +39,7 @@ export default function App() {
           },
         })
         .then((response)=> {
-          if(response.data==="0"||response.data==="1"){
+          if(response.data=="0"||response.data=="1"){ // res.data === "" 이런 형식으로 만들면, 매칭되지 않아 비밀번호가 틀려도 로그인 되어비림
             alert("로그인 실패했습니다.");
           }else{
             var userId = inputs.userId;
